@@ -3,7 +3,7 @@
 
 
 
-const STORAGE_KEY = 'taskflow_taks';
+const STORAGE_KEY = 'taskflow_tasks';
 
 function saveTasks(tasks) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
@@ -78,6 +78,7 @@ document.addEventListener('keydown', e => {
 (function setActiveNav() {
   const page = location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.nav-item').forEach(item => {
-    if (item.innerHTML.includes(page)) item.classList.add('active');
+    const href = item.getAttribute('href') || '';
+    item.classList.toggle('active', href === page);
   });
 })();
